@@ -5,5 +5,15 @@
   "assets": {
     "directory": "./public",
     "not_found_handling": "404-page"
-  }
+  },
+  "routes": [
+    {
+      "pattern": "springcreationstudio.com",
+      "custom_domain": true
+    },
+    {
+      "pattern": "www.springcreationstudio.com",
+      "custom_domain": true
+    }
+  ]
 }
