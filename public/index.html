@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Spring Creation Studio | China Market Partner for Indie Games</title>
+  <meta name="description" content="Spring Creation Studio helps overseas indie developers reach Chinese players through localization, player testing, local content, community development, and creator outreach.">
+  <meta name="theme-color" content="#071b2b">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23071b2b'/%3E%3Cpath d='M16 39c16 1 25-8 31-23 4 18-5 31-24 32' fill='none' stroke='%233dd6aa' stroke-width='6' stroke-linecap='round'/%3E%3Cpath d='M19 42c6-9 14-14 25-19' fill='none' stroke='%23f2c86b' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
+  <style>
+    :root {
+      --ink: #071b2b;
+      --ink-2: #0c2b3f;
+      --paper: #f5f8f6;
+      --white: #ffffff;
+      --mint: #3dd6aa;
+      --mint-dark: #167c69;
+      --gold: #f2c86b;
+      --text: #173042;
+      --muted: #60727e;
+      --line: rgba(7, 27, 43, .13);
+      --radius: 22px;
+      --shadow: 0 18px 50px rgba(7, 27, 43, .10);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      overflow-x: hidden;
+      background: var(--paper);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 16px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    .wrap { width: min(1160px, calc(100% - 40px)); margin: 0 auto; }
+    .eyebrow {
+      margin: 0 0 14px;
+      color: var(--mint-dark);
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+    h1, h2, h3 { margin: 0; color: var(--ink); line-height: 1.08; letter-spacing: -.035em; }
+    h1 { font-size: clamp(2.6rem, 6.6vw, 5.75rem); max-width: 950px; }
+    h2 { font-size: clamp(2rem, 4vw, 3.55rem); max-width: 800px; }
+    h3 { font-size: 1.25rem; letter-spacing: -.02em; }
+    p { margin: 0; }
+    .lead { font-size: clamp(1.05rem, 1.7vw, 1.28rem); color: #d8e6e9; max-width: 720px; }
+    .section-intro { margin-top: 20px; max-width: 720px; color: var(--muted); font-size: 1.08rem; }
+
+    .site-header {
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 50;
+      border-bottom: 1px solid rgba(255,255,255,.10);
+      background: rgba(7, 27, 43, .88);
+      backdrop-filter: blur(16px);
+    }
+    .nav { height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: flex; align-items: center; gap: 12px; color: white; font-weight: 800; letter-spacing: -.02em; }
+    .brand-mark { width: 38px; height: 38px; display: grid; place-items: center; border-radius: 12px; background: rgba(61,214,170,.13); }
+    .brand-mark svg { width: 27px; height: 27px; }
+    .brand small { display: block; color: #9fb6be; font-weight: 600; font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; }
+    .nav-links { display: flex; align-items: center; gap: 26px; color: #c9d8dc; font-size: .9rem; font-weight: 650; }
+    .nav-links a:hover, .nav-links a:focus-visible { color: white; }
+    .nav-cta, .button {
+      display: inline-flex;
+      min-height: 48px;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      padding: 12px 21px;
+      background: var(--mint);
+      color: var(--ink);
+      font-weight: 800;
+      transition: transform .2s ease, background .2s ease, border-color .2s ease;
+    }
+    .nav-cta { min-height: 42px; padding: 9px 17px; }
+    .button:hover, .nav-cta:hover { transform: translateY(-2px); background: #65e3bd; }
+    .button.secondary { background: transparent; color: white; border-color: rgba(255,255,255,.26); }
+    .button.secondary:hover { border-color: white; background: rgba(255,255,255,.06); }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 168px 0 96px;
+      background:
+        radial-gradient(circle at 85% 20%, rgba(61,214,170,.20), transparent 31%),
+        radial-gradient(circle at 8% 78%, rgba(242,200,107,.12), transparent 25%),
+        var(--ink);
+      color: white;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: .18;
+      background-image: linear-gradient(rgba(255,255,255,.09) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.09) 1px, transparent 1px);
+      background-size: 54px 54px;
+      mask-image: linear-gradient(to bottom, black, transparent 90%);
+    }
+    .hero-inner { position: relative; z-index: 1; }
+    .hero .eyebrow { color: var(--mint); }
+    .hero h1 { color: white; }
+    .hero h1 span { color: var(--mint); }
+    .hero-copy { margin-top: 28px; display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 62px; align-items: end; }
+    .hero-actions { margin-top: 32px; display: flex; gap: 12px; flex-wrap: wrap; }
+    .promise-card {
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: var(--radius);
+      padding: 24px;
+      background: rgba(255,255,255,.06);
+      box-shadow: 0 25px 70px rgba(0,0,0,.18);
+    }
+    .promise-card strong { display: block; color: var(--gold); font-size: .8rem; letter-spacing: .1em; text-transform: uppercase; }
+    .promise-card ul { list-style: none; margin: 16px 0 0; padding: 0; }
+    .promise-card li { display: flex; gap: 10px; padding: 9px 0; color: #dce7ea; border-top: 1px solid rgba(255,255,255,.09); }
+    .promise-card li::before { content: "✓"; color: var(--mint); font-weight: 900; }
+
+    .trust-strip { background: var(--gold); color: var(--ink); }
+    .trust-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
+    .trust-item { padding: 22px 20px; border-left: 1px solid rgba(7,27,43,.15); font-size: .92rem; font-weight: 800; text-align: center; }
+    .trust-item:first-child { border-left: 0; }
+
+    section { padding: 104px 0; }
+    .section-head { display: flex; justify-content: space-between; gap: 50px; align-items: end; margin-bottom: 48px; }
+    .section-note { max-width: 360px; color: var(--muted); }
+    .cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+    .service-card {
+      min-height: 300px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 30px;
+      background: var(--white);
+      box-shadow: 0 1px 0 rgba(7,27,43,.03);
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+    .service-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+    .service-number { color: var(--mint-dark); font-weight: 900; letter-spacing: .1em; }
+    .service-card h3 { margin-top: 42px; font-size: 1.55rem; }
+    .service-card p { margin-top: 12px; color: var(--muted); }
+    .service-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+    .service-tags span { padding: 6px 10px; border-radius: 999px; background: #edf7f3; color: #216e5e; font-size: .78rem; font-weight: 750; }
+
+    .partner { background: var(--ink); color: white; }
+    .partner h2 { color: white; }
+    .partner .eyebrow { color: var(--mint); }
+    .partner-layout { display: grid; grid-template-columns: 1.08fr .92fr; gap: 70px; align-items: center; }
+    .partner-copy > p { margin-top: 22px; color: #c6d7db; font-size: 1.08rem; }
+    .principles { display: grid; gap: 12px; }
+    .principle { border: 1px solid rgba(255,255,255,.12); border-radius: 18px; padding: 22px; background: rgba(255,255,255,.05); }
+    .principle strong { color: var(--gold); display: block; margin-bottom: 5px; }
+    .principle span { color: #c7d7db; }
+
+    .starter-layout { display: grid; grid-template-columns: 390px 1fr; gap: 54px; align-items: start; }
+    .price-card { position: sticky; top: 105px; border-radius: 28px; padding: 34px; background: var(--gold); color: var(--ink); box-shadow: var(--shadow); }
+    .price-card .eyebrow { color: #765710; }
+    .price { margin: 16px 0 8px; font-size: 4rem; line-height: 1; font-weight: 900; letter-spacing: -.06em; }
+    .price-card p { color: #4b3c18; }
+    .price-card .button { width: 100%; margin-top: 26px; background: var(--ink); color: white; }
+    .deliverables { display: grid; gap: 14px; }
+    .deliverable { display: grid; grid-template-columns: 54px 1fr; gap: 18px; padding: 25px 0; border-bottom: 1px solid var(--line); }
+    .deliverable:first-child { padding-top: 0; }
+    .deliverable-index { width: 48px; height: 48px; display: grid; place-items: center; border-radius: 14px; background: var(--ink); color: var(--mint); font-weight: 900; }
+    .deliverable p { margin-top: 8px; color: var(--muted); }
+
+    .process { background: #e9f0ed; }
+    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; counter-reset: step; }
+    .step { position: relative; border-radius: 20px; padding: 26px; background: white; border: 1px solid var(--line); }
+    .step::before { counter-increment: step; content: "0" counter(step); display: block; margin-bottom: 40px; color: var(--mint-dark); font-weight: 900; letter-spacing: .08em; }
+    .step p { margin-top: 10px; color: var(--muted); }
+
+    .case-layout { display: grid; grid-template-columns: .9fr 1.1fr; gap: 64px; align-items: center; }
+    .case-panel { position: relative; min-height: 430px; overflow: hidden; border-radius: 30px; padding: 34px; background: var(--ink); color: white; }
+    .case-panel::after { content: ""; position: absolute; width: 310px; height: 310px; right: -95px; bottom: -105px; border: 44px solid var(--mint); border-radius: 50%; opacity: .6; }
+    .case-panel::before { content: ""; position: absolute; width: 170px; height: 170px; right: 80px; top: 55px; border: 20px solid var(--gold); transform: rotate(18deg); opacity: .75; }
+    .case-panel small { position: relative; z-index: 1; color: var(--mint); font-weight: 800; text-transform: uppercase; letter-spacing: .12em; }
+    .case-panel h3 { position: relative; z-index: 1; margin-top: 18px; max-width: 300px; color: white; font-size: 2.45rem; }
+    .case-copy h2 { margin-bottom: 22px; }
+    .case-copy p { color: var(--muted); }
+    .case-list { margin: 28px 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .case-list li { padding: 12px 14px; border: 1px solid var(--line); border-radius: 12px; background: white; font-weight: 700; font-size: .9rem; }
+    .text-link { color: var(--mint-dark); font-weight: 850; border-bottom: 1px solid currentColor; }
+
+    .contact { padding-bottom: 60px; }
+    .contact-box { position: relative; overflow: hidden; border-radius: 34px; padding: 72px; background: var(--ink); color: white; }
+    .contact-box::after { content: "春日造物"; position: absolute; right: -15px; bottom: -35px; color: rgba(255,255,255,.045); font-size: clamp(4rem, 11vw, 9rem); font-weight: 900; white-space: nowrap; }
+    .contact-box h2 { position: relative; z-index: 1; color: white; max-width: 720px; }
+    .contact-box p { position: relative; z-index: 1; margin-top: 20px; max-width: 650px; color: #c9d9dd; font-size: 1.08rem; }
+    .contact-actions { position: relative; z-index: 1; display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+    .contact-detail { position: relative; z-index: 1; margin-top: 25px; color: #9fb4ba; font-size: .88rem; }
+
+    footer { padding: 28px 0 38px; color: var(--muted); }
+    .footer-inner { display: flex; justify-content: space-between; gap: 30px; border-top: 1px solid var(--line); padding-top: 28px; font-size: .88rem; }
+
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    @media (max-width: 900px) {
+      .nav-links a:not(.nav-cta) { display: none; }
+      .hero-copy, .partner-layout, .starter-layout, .case-layout { grid-template-columns: 1fr; }
+      .promise-card { max-width: 520px; }
+      .trust-grid { grid-template-columns: repeat(2, 1fr); }
+      .trust-item:nth-child(3) { border-left: 0; border-top: 1px solid rgba(7,27,43,.15); }
+      .trust-item:nth-child(4) { border-top: 1px solid rgba(7,27,43,.15); }
+      .section-head { display: block; }
+      .section-note { margin-top: 18px; }
+      .price-card { position: static; }
+      .steps { grid-template-columns: repeat(2, 1fr); }
+      .case-panel { min-height: 340px; }
+    }
+
+    @media (max-width: 620px) {
+      .wrap { width: min(calc(100% - 28px), 1160px); }
+      .site-header .brand small { display: none; }
+      .site-header .nav-cta { display: none; }
+      .nav { height: 68px; }
+      .hero { padding: 128px 0 70px; }
+      .hero h1 { max-width: 100%; font-size: clamp(2.35rem, 11vw, 3rem); overflow-wrap: anywhere; }
+      .hero-copy { gap: 34px; }
+      .hero-actions { display: grid; grid-template-columns: 1fr; }
+      .hero-actions .button { width: 100%; }
+      section { padding: 76px 0; }
+      .cards, .steps { grid-template-columns: 1fr; }
+      .service-card { min-height: auto; }
+      .service-card h3 { margin-top: 28px; }
+      .partner-layout { gap: 38px; }
+      .price { font-size: 3.35rem; }
+      .deliverable { grid-template-columns: 46px 1fr; gap: 14px; }
+      .deliverable-index { width: 42px; height: 42px; }
+      .case-list { grid-template-columns: 1fr; }
+      .contact-box { padding: 44px 26px; }
+      .contact-actions .button { width: 100%; }
+      .footer-inner { display: block; }
+      .footer-inner p + p { margin-top: 8px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="#top" aria-label="Spring Creation Studio home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 64 64" fill="none"><path d="M16 39c16 1 25-8 31-23 4 18-5 31-24 32" stroke="#3dd6aa" stroke-width="6" stroke-linecap="round"/><path d="M19 42c6-9 14-14 25-19" stroke="#f2c86b" stroke-width="4" stroke-linecap="round"/></svg>
+        </span>
+        <span>Spring Creation <small>春日造物 · China Market Services</small></span>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#services">Services</a>
+        <a href="#approach">Our approach</a>
+        <a href="#starter-pack">Starter pack</a>
+        <a href="#work">Our work</a>
+        <a class="nav-cta" href="#contact">Discuss your game</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero-inner">
+        <p class="eyebrow">A flexible alternative to traditional publishing</p>
+        <h1>You make the game.<br>We help it reach <span>Chinese players.</span></h1>
+        <div class="hero-copy">
+          <div>
+            <p class="lead">Spring Creation Studio is a China-market services studio for overseas indie developers. Work with us without transferring publishing rights or giving up control of your Steam account.</p>
+            <div class="hero-actions">
+              <a class="button" href="#contact">Tell us about your game</a>
+              <a class="button secondary" href="#services">Explore our services</a>
+            </div>
+          </div>
+          <aside class="promise-card" aria-label="Our cooperation principles">
+            <strong>Your game stays yours</strong>
+            <ul>
+              <li>Flexible, non-exclusive cooperation</li>
+              <li>Start with a focused, defined scope</li>
+              <li>Local execution with English reporting</li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <div class="trust-strip" aria-label="Key capabilities">
+      <div class="wrap trust-grid">
+        <div class="trust-item">Native Chinese localization</div>
+        <div class="trust-item">Chinese player testing</div>
+        <div class="trust-item">Local content & community</div>
+        <div class="trust-item">Creator & media outreach</div>
+      </div>
+    </div>
+
+    <section id="services">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow">What we do</p>
+            <h2>Practical support for every stage of your China journey.</h2>
+          </div>
+          <p class="section-note">From your first localized store page to post-launch community support, we build a scope around what your game actually needs.</p>
+        </div>
+        <div class="cards">
+          <article class="service-card reveal">
+            <span class="service-number">01</span>
+            <div><h3>Localization & language review</h3><p>Natural Simplified Chinese store copy, title options, terminology review, and in-game language quality checks that preserve your game’s voice.</p></div>
+            <div class="service-tags"><span>Steam store copy</span><span>LQA</span><span>In-game localization</span></div>
+          </article>
+          <article class="service-card reveal">
+            <span class="service-number">02</span>
+            <div><h3>Local content & community</h3><p>Official profiles, launch content, and community support across platforms such as Bilibili, HeyBox, Xiaohongshu, Douyin, and QQ.</p></div>
+            <div class="service-tags"><span>Bilibili</span><span>HeyBox</span><span>QQ</span><span>RED</span></div>
+          </article>
+          <article class="service-card reveal">
+            <span class="service-number">03</span>
+            <div><h3>Chinese player testing</h3><p>Targeted playtests that surface first impressions, usability issues, localization concerns, pricing perceptions, and recurring player questions.</p></div>
+            <div class="service-tags"><span>Recruitment</span><span>Feedback report</span><span>Recommendations</span></div>
+          </article>
+          <article class="service-card reveal">
+            <span class="service-number">04</span>
+            <div><h3>Discovery & outreach</h3><p>China-facing positioning, content planning, comparable-title research, and outreach to relevant creators and media around demos, launches, and updates.</p></div>
+            <div class="service-tags"><span>Market assessment</span><span>Creators</span><span>Campaigns</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="partner" id="approach">
+      <div class="wrap partner-layout">
+        <div class="partner-copy reveal">
+          <p class="eyebrow">More than a one-time vendor</p>
+          <h2>Your local partner—and an extension of your team in China.</h2>
+          <p>We combine local knowledge, execution, communication, and player feedback. You remain involved in every official message while we make the work more relevant and efficient for Chinese players.</p>
+        </div>
+        <div class="principles reveal">
+          <div class="principle"><strong>No publishing-rights transfer</strong><span>You retain ownership, control, and decision-making.</span></div>
+          <div class="principle"><strong>No Steam-account handover</strong><span>You approve and publish final store content through Steamworks.</span></div>
+          <div class="principle"><strong>Start small, expand with evidence</strong><span>Begin with localization, testing, or an assessment—then scale if the results justify it.</span></div>
+          <div class="principle"><strong>Feedback returns to your team</strong><span>Recurring issues and useful market insights are organized and reported in English.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="starter-pack">
+      <div class="wrap starter-layout">
+        <aside class="price-card reveal">
+          <p class="eyebrow">China Starter Pack</p>
+          <h2>Your first clear step into China.</h2>
+          <div class="price">US$299</div>
+          <p>One game · Estimated delivery in 10–15 business days after scope and materials are confirmed.</p>
+          <a class="button" href="#contact">Ask about the starter pack</a>
+        </aside>
+        <div class="deliverables reveal">
+          <div class="deliverable"><span class="deliverable-index">01</span><div><h3>Steam Store Localization</h3><p>2–3 Chinese title options, localized short and long descriptions, selling-point refinement, and a pre-publication review. Covers up to 1,500 English source words and one consolidated revision round.</p></div></div>
+          <div class="deliverable"><span class="deliverable-index">02</span><div><h3>Chinese Social & Community Setup</h3><p>Profile copy, basic setup, and an introductory post for selected local platforms, with handover documentation and practical alternatives where registration is not feasible.</p></div></div>
+          <div class="deliverable"><span class="deliverable-index">03</span><div><h3>Chinese Player Playtest</h3><p>5–20 relevant players, at least five valid feedback submissions, and an English report with 3–5 prioritized recommendations.</p></div></div>
+          <div class="deliverable"><span class="deliverable-index">04</span><div><h3>China Market Quick Assessment</h3><p>An initial target-player profile, relevant comparable titles, China-facing promotional angles, recommended platforms, and practical next steps.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="process" id="process">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div><p class="eyebrow">How we work</p><h2>A simple process with clear responsibilities.</h2></div>
+          <p class="section-note">Every project begins with a defined scope, materials list, timeline, and approval process.</p>
+        </div>
+        <div class="steps">
+          <article class="step reveal"><h3>Share your game</h3><p>Send your Steam page, trailer, development stage, and China goals.</p></article>
+          <article class="step reveal"><h3>Confirm the scope</h3><p>We agree on deliverables, requirements, playtest goals, and timeline.</p></article>
+          <article class="step reveal"><h3>Provide materials</h3><p>You share approved copy, assets, access, keys, and relevant brand guidance.</p></article>
+          <article class="step reveal"><h3>Review & receive</h3><p>You approve the work and receive localized materials, reports, and handover documents.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="work">
+      <div class="wrap case-layout">
+        <div class="case-panel reveal" aria-label="The Severed Gods project">
+          <small>Recent collaboration</small>
+          <h3>The Severed Gods</h3>
+        </div>
+        <div class="case-copy reveal">
+          <p class="eyebrow">Selected work</p>
+          <h2>Helping an indie release build its foundation in China.</h2>
+          <p>Our recent work with Topebox’s <em>The Severed Gods</em> included localization, store-page support, local content, creator outreach, player testing, and community management.</p>
+          <ul class="case-list">
+            <li>Chinese localization</li>
+            <li>Steam store copy</li>
+            <li>Bilibili & HeyBox content</li>
+            <li>Creator outreach</li>
+            <li>Player testing</li>
+            <li>QQ community support</li>
+          </ul>
+          <a class="text-link" href="https://store.steampowered.com/app/3755930/" target="_blank" rel="noopener">View the game on Steam</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="wrap">
+        <div class="contact-box reveal">
+          <p class="eyebrow">Start a conversation</p>
+          <h2>Tell us where your game is now—and what you hope to achieve in China.</h2>
+          <p>Send your Steam page or trailer, current development stage, release plans, existing Chinese-language support, and the kind of help you are considering.</p>
+          <div class="contact-actions">
+            <a class="button" href="mailto:springcreation69@gmail.com?subject=China%20Market%20Inquiry%20%E2%80%94%20%5BGame%20Name%5D">Email Spring Creation</a>
+            <a class="button secondary" href="https://discord.gg/YTfzU654wa" target="_blank" rel="noopener">Join us on Discord</a>
+          </div>
+          <div class="contact-detail">springcreation69@gmail.com · Discord: springcreation.studio · Based in China</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <p>© <span id="year"></span> Spring Creation Studio · 春日造物</p>
+      <p>China Market Partner for Indie Games</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+  </script>
+</body>
+</html>
+
